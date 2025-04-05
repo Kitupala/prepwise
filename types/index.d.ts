@@ -48,7 +48,7 @@ interface InterviewCardProps {
 }
 
 interface AgentProps {
-  userName: string;
+  userName: string | undefined;
   userId?: string;
   interviewId?: string;
   feedbackId?: string;
@@ -96,4 +96,9 @@ interface InterviewFormProps {
 
 interface TechIconProps {
   techStack: string[];
+}
+
+interface SavedMessage {
+  role: "user" | "system" | "assistant";
+  content: string;
 }
