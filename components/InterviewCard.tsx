@@ -6,7 +6,7 @@ import Link from "next/link";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 
 const InterviewCard = ({
-  interviewId,
+  id: interviewId,
   userId,
   role,
   type,
