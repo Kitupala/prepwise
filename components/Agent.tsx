@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { vapi } from "@/lib/vapi.sdk";
 import { toast } from "sonner";
 import { interviewer } from "@/constants";
+import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
   CONNECTING = "CONNECTING",
@@ -61,31 +62,35 @@ const Agent = ({
     };
   }, []);
 
-  const handleGenerateFeedback = async (messages: SavedMessage[]) => {
-    console.log("Create feedback here");
+  const handleGenerateFeedback = useCallback(
+    async (messages: SavedMessage[]) => {
+      const { success, feedbackId: id } = await createFeedback({
+        interviewId: interviewId!,
+        userId: userId!,
+        transcript: messages,
+      });
 
-    const { success, id } = {
-      success: true,
-      id: "feedback-id",
-    };
-
-    if (success && id) {
-      router.push(`/interview/${interviewId}/feedback`);
-    } else {
-      toast.error("Failed to create feedback.");
-      router.push("/");
-    }
-  };
+      if (success && id) {
+        router.push(`/interview/${interviewId}/feedback`);
+      } else {
+        toast.error("Failed to create feedback.");
+        router.push("/");
+      }
+    },
+    [interviewId, userId, router],
+  );
 
   useEffect(() => {
     if (callStatus === CallStatus.DISCONNECTED) {
       if (type === "generate") {
         router.push("/");
       } else {
-        handleGenerateFeedback(messages);
+        (async () => {
+          await handleGenerateFeedback(messages);
+        })();
       }
     }
-  }, [messages, callStatus, type, userId, router]);
+  }, [messages, callStatus, type, handleGenerateFeedback, router]);
 
   const handleCall = async () => {
     setCallStatus(CallStatus.CONNECTING);
