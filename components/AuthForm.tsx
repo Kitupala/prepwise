@@ -101,7 +101,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
           <Image src="/logo.svg" alt="logo" width={32} height={38} />
           <h2 className="text-primary-100">PrepWise</h2>
         </div>
-        <h3>Practice job interview with AI</h3>
+        <h3 className="self-center">Practice job interview with AI</h3>
 
         <Form {...form}>
           <form
@@ -130,7 +130,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               placeholder="Enter your password"
               type="password"
             />
-            <Button className="btn" type="submit">
+            <Button className="btn mt-6" type="submit">
               {isSignIn ? "Sign in" : "Create an Account"}
             </Button>
           </form>
