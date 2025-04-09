@@ -19,7 +19,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
         </Link>
         <LogoutButton />
       </nav>
-      {children}≠
+      {children}
     </div>
   );
 };
