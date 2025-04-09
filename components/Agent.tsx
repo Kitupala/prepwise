@@ -21,6 +21,7 @@ const Agent = ({
   userId,
   type,
   interviewId,
+  feedbackId,
   questions,
 }: AgentProps) => {
   const router = useRouter();
@@ -68,6 +69,7 @@ const Agent = ({
         interviewId: interviewId!,
         userId: userId!,
         transcript: messages,
+        feedbackId,
       });
 
       if (success && id) {
@@ -77,7 +79,7 @@ const Agent = ({
         router.push("/");
       }
     },
-    [interviewId, userId, router],
+    [interviewId, feedbackId, userId, router],
   );
 
   useEffect(() => {
