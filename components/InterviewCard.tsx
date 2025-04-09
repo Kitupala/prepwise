@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 
 const InterviewCard = async ({
   id: interviewId,
@@ -14,8 +15,9 @@ const InterviewCard = async ({
   techstack,
   createdAt,
 }: InterviewCardProps) => {
+  const user = await getCurrentUser();
   const feedback =
-    userId && interviewId
+    userId && userId === user?.id && interviewId
       ? await getFeedbackByInterviewId({ interviewId, userId })
       : null;
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
@@ -33,7 +35,7 @@ const InterviewCard = async ({
 
           <Image
             src={getRandomInterviewCover()}
-            alt="cover image"
+            alt="cover-image"
             width={90}
             height={90}
             className="size-[80px] rounded-full object-cover"
@@ -74,7 +76,7 @@ const InterviewCard = async ({
                   : `/interview/${interviewId}`
               }
             >
-              {feedback ? "View Feedback" : "View Interview"}
+              {feedback ? "Check Feedback" : "View Interview"}
             </Link>
           </Button>
         </div>
