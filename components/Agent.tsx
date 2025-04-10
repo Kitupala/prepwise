@@ -8,6 +8,7 @@ import { vapi } from "@/lib/vapi.sdk";
 import { toast } from "sonner";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
+import { Phone, PhoneOff, PhoneOutgoing } from "lucide-react";
 
 enum CallStatus {
   CONNECTING = "CONNECTING",
@@ -189,11 +190,23 @@ const Agent = ({
                 callStatus === CallStatus.CONNECTING && "hidden",
               )}
             />
-            <span>{isCallInactiveOrDisconnected ? "Call" : "..."}</span>
+            <span>
+              {isCallInactiveOrDisconnected ? (
+                <span className="flex items-center gap-3">
+                  <Phone size={20} className="-ml-2" /> Call
+                </span>
+              ) : (
+                <span className="flex items-center gap-3">
+                  <PhoneOutgoing size={20} className="-ml-2" /> Connecting...
+                </span>
+              )}
+            </span>
           </button>
         ) : (
           <button className="btn-disconnect" onClick={handleDisconnect}>
-            End
+            <span className="flex items-center gap-3">
+              <PhoneOff size={20} className="-ml-2" /> End Call
+            </span>
           </button>
         )}
       </div>

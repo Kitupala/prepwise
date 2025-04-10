@@ -23,12 +23,13 @@ const Page = async () => {
     <>
       <section className="card-cta">
         <div className="flex max-w-lg flex-col gap-6">
+          {/*<h2>Get interview-ready with AI-powered practice & feedback</h2>*/}
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
           <p className="text-lg">
-            Practice real interview questions & get instant feedback.
+            Practice real interview questions and get instant feedback.
           </p>
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link href="/interview">Generate Interview</Link>
           </Button>
         </div>
 
@@ -56,7 +57,7 @@ const Page = async () => {
       </section>
 
       <section className="mt-8 flex flex-col gap-6">
-        <h2>Take an Interview</h2>
+        <h2>Pick an Interview</h2>
 
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
