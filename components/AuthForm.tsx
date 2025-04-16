@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -19,10 +20,11 @@ import {
 } from "firebase/auth";
 import { auth } from "@/firebase/client";
 import { signIn, signUp } from "@/lib/actions/auth.action";
+import ImageUpload from "@/components/ImageUpload";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
-    name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
+    name: type === "sign-up" ? z.string().min(6) : z.string().optional(),
     email: z.string().email(),
     password: z.string().min(4),
   });
@@ -32,6 +34,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
   const router = useRouter();
   const isSignIn = type === "sign-in";
   const formSchema = authFormSchema(type);
+  const [imageURL, setImageURL] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,11 +56,14 @@ const AuthForm = ({ type }: { type: FormType }) => {
           password,
         );
 
+        const uid = userCredentials.user.uid;
+
         const result = await signUp({
-          uid: userCredentials.user.uid,
+          uid,
           name: name!,
           email,
           password,
+          imageURL,
         });
 
         if (!result?.success) {
@@ -130,6 +136,22 @@ const AuthForm = ({ type }: { type: FormType }) => {
               placeholder="Enter your password"
               type="password"
             />
+
+            {!isSignIn && (
+              <>
+                <label className="text-light-100 mb-2 flex items-center text-sm leading-none font-normal">
+                  Profile Picture (Optional)
+                </label>
+                <ImageUpload
+                  type="image"
+                  accept="image/*"
+                  placeholder="Upload an image"
+                  folder="prepwise/profileImages"
+                  onChange={setImageURL}
+                />
+              </>
+            )}
+
             <Button className="btn mt-6" type="submit">
               {isSignIn ? "Sign in" : "Create an Account"}
             </Button>

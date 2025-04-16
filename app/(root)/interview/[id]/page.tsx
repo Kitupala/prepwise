@@ -38,6 +38,7 @@ const Page = async ({ params }: RouteParams) => {
       <Agent
         userName={user?.name || ""}
         userId={user?.id}
+        avatar={user?.imageURL}
         type="interview"
         interviewId={id}
         questions={interview.questions}
