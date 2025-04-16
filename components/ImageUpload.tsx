@@ -7,8 +7,12 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!;
-const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT!;
 const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!;
+
+const apiEndpoint =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : process.env.NEXT_PUBLIC_BASE_URL!;
 
 const authenticator = async () => {
   const res = await fetch(`${apiEndpoint}/api/auth/imagekit`);
