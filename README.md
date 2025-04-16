@@ -1,6 +1,6 @@
 # PrepWise
 
-![prepwise](https://github.com/user-attachments/assets/1f14d089-6340-4d49-8b81-2541fc06e98e)
+![prepwise_logo-modified](https://github.com/user-attachments/assets/cffd40bc-b44a-40dd-9f69-aae6b28e882d)
 
 ## Introduction
 
@@ -18,6 +18,8 @@ The app is built using modern technologies to ensure a fast and scalable experie
 - **AI Integration**:
     - **Vapi AI**: Enables robust AI-driven conversational experiences, powering the interview process and feedback systems.
     - **Google Gemini**: Used for advanced AI functionalities to enhance question generation and feedback quality.
+- **Media Optimization:**
+    - **ImageKit:** Handles image uploading, storage, and delivery for better performance and user experience.
 
 - **Utilities & Libraries**:
   - `react-hook-form` for managing form states.
