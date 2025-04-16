@@ -44,7 +44,10 @@ The app is designed with a focus on simplicity and effectiveness, offering the f
 
 3. **Personalized Dashboard**  
    - View your past interviews: Check out your progress and analyze areas where you need improvement.  
-   - Discover upcoming interviews: Get a list of interview sessions tailored to your skill level and goals.  
+   - Discover upcoming interviews: Get a list of interview sessions tailored to your skill level and goals.
+   - Personalize with your avatar: Upload and display a custom profile picture.
+
+      
 
 
 4. **Modern UI/UX**   
