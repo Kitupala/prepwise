@@ -171,9 +171,6 @@
     @apply inline-block px-7 py-3 text-sm font-bold leading-5 text-white transition-colors duration-150 bg-destructive-100 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl active:bg-destructive-200 hover:bg-destructive-200 min-w-28;
   }
 
-  .btn-upload {
-    @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md;
-  }
   .btn-primary {
     @apply w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10;
   }
@@ -182,7 +179,7 @@
   }
 
   .btn-upload {
-    @apply bg-dark-200 rounded-full min-h-12 px-5 cursor-pointer border border-input  overflow-hidden;
+    @apply bg-dark-200 min-h-12 px-5 cursor-pointer border border-input overflow-hidden text-sm flex w-full items-center justify-center gap-1.5 rounded-full;
   }
 
   .card-border {
@@ -291,6 +288,10 @@
     .badge-text {
       @apply text-sm font-semibold capitalize;
     }
+  }
+
+  .upload-filename {
+    @apply mt-1 text-center text-xs;
   }
 }
 

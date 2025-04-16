@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
 import { Phone, PhoneOff, PhoneOutgoing } from "lucide-react";
+import { IKImage } from "imagekitio-next";
 
 enum CallStatus {
   CONNECTING = "CONNECTING",
@@ -20,6 +21,7 @@ enum CallStatus {
 const Agent = ({
   userName,
   userId,
+  avatar,
   type,
   interviewId,
   feedbackId,
@@ -134,6 +136,9 @@ const Agent = ({
     callStatus === CallStatus.INACTIVE ||
     callStatus === CallStatus.DISCONNECTED;
 
+  const imageKitUrl = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!;
+  const imageURL = `${imageKitUrl}${avatar}`;
+
   return (
     <>
       <div className="call-view">
@@ -153,13 +158,24 @@ const Agent = ({
 
         <div className="card-border">
           <div className="card-content">
-            <Image
-              src="/user-avatar.png"
-              alt="user avatar"
-              width={540}
-              height={540}
-              className="size-[120px] rounded-full object-cover"
-            />
+            {avatar !== null ? (
+              <IKImage
+                src={imageURL}
+                urlEndpoint={process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!}
+                alt="user avatar"
+                width={540}
+                height={540}
+                className="size-[120px] rounded-full object-cover"
+              />
+            ) : (
+              <Image
+                src="/profile.svg"
+                alt="user avatar"
+                width={540}
+                height={540}
+                className="size-[120px] rounded-full object-cover"
+              />
+            )}
             <h3>{userName}</h3>
           </div>
         </div>

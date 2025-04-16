@@ -35,6 +35,7 @@ interface CreateFeedbackParams {
 interface User {
   name: string;
   email: string;
+  imageURL: string | null;
   id: string;
 }
 
@@ -50,6 +51,7 @@ interface InterviewCardProps {
 interface AgentProps {
   userName: string | undefined;
   userId?: string;
+  avatar?: string | null | undefined;
   interviewId?: string;
   feedbackId?: string;
   type: "generate" | "interview";
@@ -81,6 +83,7 @@ interface SignUpParams {
   name: string;
   email: string;
   password: string;
+  imageURL: string | null;
 }
 
 type FormType = "sign-in" | "sign-up";
